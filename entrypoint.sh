@@ -18,13 +18,12 @@ function detect_client_info() {
   CLIENT_ARCH="${SCP_CLIENT_ARCH:-$(uname -m)}"
 
   case "${CLIENT_PLATFORM}" in
-  darwin | linux | windows) ;;
-  *) log_error "Unknown or unsupported platform: ${CLIENT_PLATFORM}. Supported platforms are Linux, Darwin, and Windows." 2 ;;
+  darwin | linux | windows | MINGW*) ;;
+  *) log_error "Unknown or unsupported platform: ${CLIENT_PLATFORM}. Supported platforms are Linux, Darwin, Windows and MINGW." 2 ;;
   esac
 
   case "${CLIENT_PLATFORM}" in
-  windows) ;;
-  *) CLIENT_BINARY_SUFFIX=".exe" ;;
+  windows | MINGW*) CLIENT_BINARY_SUFFIX=".exe" ;;
   esac
 
   case "${CLIENT_ARCH}" in
