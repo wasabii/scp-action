@@ -32,6 +32,12 @@ function detect_client_info() {
 detect_client_info
 DOWNLOAD_URL_PREFIX="${DRONE_SCP_RELEASE_URL}/v${DRONE_SCP_VERSION}"
 CLIENT_BINARY="drone-scp-${DRONE_SCP_VERSION}-${CLIENT_PLATFORM}-${CLIENT_ARCH}"
+
+case "${CLIENT_PLATFORM}" in
+windows) ;;
+*) CLIENT_BINARY=$CLIENT_BINARY.exe ;;
+esac
+
 TARGET="${GITHUB_ACTION_PATH}/${CLIENT_BINARY}"
 echo "Downloading ${CLIENT_BINARY} from ${DOWNLOAD_URL_PREFIX}"
 INSECURE_OPTION=""
