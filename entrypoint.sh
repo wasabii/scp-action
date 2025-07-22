@@ -23,7 +23,11 @@ function detect_client_info() {
   esac
 
   case "${CLIENT_PLATFORM}" in
-  windows | mingw* | msys_nt*) CLIENT_BINARY_SUFFIX=".exe"; CLIENT_PLATFORM="windows" ;;
+  windows | mingw* | msys_nt*) CLIENT_BINARY_SUFFIX=".exe"; CLIENT_PLATFORM="windows"; export MSYS_NO_PATHCONV="1" ;;
+  esac
+
+  case "${CLIENT_PLATFORM}" in
+  mingw* | msys_nt*) export MSYS_NO_PATHCONV="1" ;;
   esac
 
   case "${CLIENT_ARCH}" in
